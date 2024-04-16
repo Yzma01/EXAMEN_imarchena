@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^2.29.3",
+    "express-jwt": "^8.4.1",
+    "gray-matter": "^4.0.3",
+    "mongoose": "^8.3.2",
+    "next": "latest",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
