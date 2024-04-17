@@ -22,6 +22,6 @@ async function update(req, res){
 }
 
 async function _delete(req, res){
-    await dateRepo.delete(req.query.id);
+    await dateRepo.delete(req.query.id, req.body);
     return res.status(200).json({})
 }

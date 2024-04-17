@@ -9,7 +9,8 @@ mongoose.Promise = global.Promise;
 
 export const db = {
     User: userModel(),
-    ScheduleDate: dateModel()
+    ScheduleDate: dateModel(),
+    Vacation: vacationModel(),
 };
 const validRoles = ['admin', 'worker'];
 const validStatus = ['pendiente', 'completada', 'cancelada'];
@@ -77,4 +78,24 @@ function dateModel() {
     })
 
     return mongoose.models.ScheduleDate || mongoose.model('ScheduleDate', schema);
+}
+
+function vacationModel(){
+    const schema = new Schema({
+        startDate: {type: Date, require: true},
+        endingDate: {type: Date, require: true},
+        userId: {type: String, require: true},
+    },{
+        timestamps: true
+    })
+
+    schema.set('toJSON',{
+        virtuals: true,
+        versionKey: false,
+        transform: function (doc, ret){
+            delete ret._id;
+        }
+    })
+
+    return mongoose.models.VacationModel || mongoose.model('VacationModel', schema);
 }

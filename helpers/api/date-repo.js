@@ -2,7 +2,6 @@ import getConfig from 'next/config';
 import { db } from 'helpers/api';
 
 const { serverRunTimeConfig } = getConfig();
-const User = db.User;
 const ScheduleDate = db.ScheduleDate;
 
 export const dateRepo = {
@@ -18,7 +17,7 @@ async function getAll() {
 }
 
 async function getById(id) {
-    return await ScheduleDate.findById(id)
+    return await ScheduleDate.find(id)
 }
 
 async function create(params) {
@@ -51,24 +50,29 @@ async function create(params) {
 }
 
 async function update(id, params) {
-    const date = await ScheduleDate.findOne({ userId: id });
-
+    let date = await ScheduleDate.findOne({_id: params.id});
+    console.log(date);
+    
     if (!date) {
         throw `date not found for userID ${id}`
     }
-
-    if (date.username !== params.username && await ScheduleDate.findOne({
+    
+    if (await ScheduleDate.findOne({
         hour: params.hour,
         date: params.date
     })) {
         throw `this date and hour has already taken`
     }
+    if (date.state !== "pendiente"){
+        throw `this date is already ${date.state} please schedule another date`
+    }
 
     Object.assign(date, params);
-
+    
+    console.log(date);
     await date.save();
 }
 
-async function _delete(id) {
-    await ScheduleDate.findOneAndRemove(id);
+async function _delete(id, params) {
+    await ScheduleDate.findOneAndDelete({userId: id, _id: params.id});
 }
