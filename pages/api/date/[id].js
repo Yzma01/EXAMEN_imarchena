@@ -7,7 +7,7 @@ export default apiHandler({
 });
 
 async function getById(req, res){
-    const date = await dateRepo.getById(req.query.userId);
+    const date = await dateRepo.getById(req.query.id);
 
     if(!date){
         throw "date not found"

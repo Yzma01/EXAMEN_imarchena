@@ -14,6 +14,7 @@ export const db = {
 };
 const validRoles = ['admin', 'worker'];
 const validStatus = ['pendiente', 'completada', 'cancelada'];
+const validStatusVac = ['pendiente', 'aprobado', 'rechazado'];
 
 // mongoose models with schema definitionsd
 
@@ -59,7 +60,8 @@ function dateModel() {
         username: { type: String, require: true },
         userId: { type: String, require: true },
         description: { type: String, require: true },
-        state: { type: String, require: true, validate:{
+        state: { type: String, require: true, 
+        validate:{
             validator: function (value){
                 return validStatus.includes(value);
             },
@@ -85,6 +87,15 @@ function vacationModel(){
         startDate: {type: Date, require: true},
         endingDate: {type: Date, require: true},
         userId: {type: String, require: true},
+        comment: {type: String, require: true},
+        state: {type: String, require: true,
+            validate: {
+                validator: function (value){
+                    return validStatusVac.includes(value);
+                },
+                message: props => `${props.value} is not valid. the valid states are ${validStatusVac.join(', ')}`
+            }
+        }
     },{
         timestamps: true
     })

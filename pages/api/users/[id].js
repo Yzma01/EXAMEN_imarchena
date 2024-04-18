@@ -15,11 +15,13 @@ async function getById(req, res) {
 }
 
 async function update(req, res) {
+    console.log("holaaaaaaa", req.query.id);
     await usersRepo.update(req.query.id, req.body);
     return res.status(200).json({});
 }
 
 async function _delete(req, res) {
     await usersRepo.delete(req.query.id);
+
     return res.status(200).json({});
 }

@@ -13,7 +13,6 @@ function jwtMiddleware(req, res) {
             '/api/users/register',
             '/api/users/authenticate',
             '/api/date/register',
-            '/api/date',
             '/api/vacations/register'
         ]
     });

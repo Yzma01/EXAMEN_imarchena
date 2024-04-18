@@ -7,5 +7,5 @@ export default apiHandler({
 async function register(req, res){
 
     const vac = await vacationRepo.create(req.body);
-    return res.status(200).json({message: `vacation schedule from ${vac.startDate} to ${vac.endingDate}`})
+    return res.status(200).json({})
 }

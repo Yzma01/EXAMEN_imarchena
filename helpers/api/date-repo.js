@@ -3,6 +3,7 @@ import { db } from 'helpers/api';
 
 const { serverRunTimeConfig } = getConfig();
 const ScheduleDate = db.ScheduleDate;
+const Vacation = db.Vacation;
 
 export const dateRepo = {
     getAll,
@@ -17,7 +18,7 @@ async function getAll() {
 }
 
 async function getById(id) {
-    return await ScheduleDate.find(id)
+    return await ScheduleDate.find({userId: id})
 }
 
 async function create(params) {
@@ -33,6 +34,15 @@ async function create(params) {
     ) {
         throw `this user already have a date for ${params.date} ${params.hour}${params.hour > 11 ? 'pm' : 'am'}`
     }
+    // select * from tbl_vacations where startDate <= objdate && endingDate >= objDate 
+    const vacations = await Vacation.find({
+        startDate: {$lte: objDate},
+        endingDate: {$gte: objDate}
+    })
+    console.log(vacations)
+    if (vacations.length > 0){
+        throw `We are in vacations`
+    }
 
     if (await ScheduleDate.findOne({
         date: objDate,
@@ -46,7 +56,6 @@ async function create(params) {
     const scheduleDate = new ScheduleDate(params);
 
     await scheduleDate.save();
-
 }
 
 async function update(id, params) {

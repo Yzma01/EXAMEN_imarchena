@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: true,
     serverRuntimeConfig: {
-        connectionString: "mongodb://localhost/next-js-registration-login-example",
+        connectionString: "mongodb://localhost/scheduleDatesDB",
         secret: '123Cuatro5SIETE9'
     },
     publicRuntimeConfig: {
