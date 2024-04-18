@@ -8,7 +8,6 @@ export default apiHandler({
 
 async function getById(req,res){
     const vac = await vacationRepo.getById(req.query.id);
-    console.log(req.body.id)
 
     if(!vac){
         throw `there's no vacation for this id ${req.body.id}`
