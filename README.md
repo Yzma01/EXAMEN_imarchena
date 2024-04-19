@@ -104,7 +104,8 @@ Campos del modelo:
     "endingDate": "aaaa-MM-dd",
     "userId": "userId",
     "comment": "comment",
-    "state": "state"
+    "state": "state", 
+    "id": "// requerido solo cuando es para borrar o actualizar una vacación"
 }
 
 ```
