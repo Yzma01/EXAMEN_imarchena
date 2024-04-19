@@ -7,7 +7,6 @@
     2. [Model ScheduleDates](#model-scheduledates)
     3. [Model Vacations](#model-vacations)
 ---
-Para correr el proyecto, sigue estos pasos:
 # Instrucciones para correr el proyecto
 
 1. En la carpeta deseada, ejecuta el siguiente comando para clonar el repositorio:
